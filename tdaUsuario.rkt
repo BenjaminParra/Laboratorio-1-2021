@@ -96,5 +96,19 @@
       )
   )
 
-    
+#| Funcion que se encarga de tranforma una fila a string
+ Entrada: fila x string
+ Salida: String|#
+(define(listToString lista str)
+  (if (null? lista)
+      str
+      (if(string? (car lista))
+         (listToString (cdr lista)(string-append str " " (car lista)))
+         (listToString (cdr lista)(string-append str " "(number->string(car lista)))))
+      )
+  )
+
+(define (post . args) args)
+
+
       

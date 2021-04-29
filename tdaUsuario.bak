@@ -1,4 +1,5 @@
 #lang racket
+(provide (all-defined-out))
 ;TDA USUARIO
 ;user string pass string amigos lista de Usuarios, perfil lista de publicaciones
 ;cuando se registre un usuario se verificara que solo sean letras y numeros

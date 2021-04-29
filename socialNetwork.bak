@@ -1,0 +1,6 @@
+#lang racket
+
+#|
+
+(define (socialnetwork name date encFun decFun)
+         (list socialnetwork name date encFun decFun))|#

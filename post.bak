@@ -1,0 +1,6 @@
+#lang racket
+(require "Tda Usuario.rkt")
+;TDA POST
+
+(define (post usuario)
+  (if (validaUsuario usuario)))

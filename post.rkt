@@ -22,7 +22,7 @@
 #|(define (post socialNetwork)
   (lambda (getUser)(lambda getDate)))
  )|#
-;(display (creaPublicacion "BenjaParra" (list 1 3 24) "Estoy muy feliz" "estado" "chilo"))
+
 
 ;descripción: Función que verifica si usuario está en la lista de amigos
 ;dom: string X lista
@@ -34,20 +34,42 @@
           #t
           (sonAmigos? user (cdr listaAmigo)))))
 
-;funcion que recibe UsuarioCreador Date Archivo Tipo $destino opcional
-(define (creaPublicacion . args)
-  (if (= 4 (length args))
-      (string-append "El usuario " (car args) " ha publicado " (caddr args) "."
-                     (cadddr args) " en su perfil." "\n" "Fecha:" (listToString(cadr args)""))
-      (if (sonAmigos? (car(cdr (cdddr args))) (list "chilo" "benja" "parra")) ;modificar aca y colocar lista de amigos
-           (if (= 5 (length args))
-               (string-append "El usuario " (car args) " ha publicado "  (caddr args) "."
-                         (cadddr args) " en el perfil de " (car(cdr (cdddr args))) " \n" "Fecha:" (listToString(cadr args)""))
+
+(define (listaPost . lista)lista)
+;(display (creaPublicacion "BenjaParra" (list 1 3 24) "Estoy muy feliz" "estado" "chilo"))
+;funcion que recibe lista con UsuarioCreador Date Archivo Tipo $destinoOpcional
+(define (creaPublicacion parametrosPost)
+  (if (= 4 (length parametrosPost))
+      (string-append "El usuario " (car parametrosPost) " ha publicado " (caddr parametrosPost) "."
+                     (cadddr parametrosPost) " en su perfil." "\n" "Fecha:" (listToString(cadr parametrosPost)""))
+      (if (sonAmigos? (car(cdr (cdddr parametrosPost))) (list "chilo" "benja" "parra")) ;modificar aca y colocar lista de amigos
+           (if (= 5 (length parametrosPost))
+               (string-append "El usuario " (car parametrosPost) " ha publicado "  (caddr parametrosPost) "."
+                         (cadddr parametrosPost) " en el perfil de " (car(cdr (cdddr parametrosPost))) " \n" "Fecha:" (listToString(cadr parametrosPost)""))
                #f)
            #f)
       )
   )
 
+;Funcion Creadora post
+;User1 date contenido tipo user 2(opcional)
+(define (creaPost . elementos)elementos)
+
+#|SELECTORES|#
+;descripción: Función que retorna el usuario que realiza el post
+;dom: 
+;rec: entero
   
+;(define (suma x y)(+ x y))
+
+;(define (operacion x y resultado)
+ ; (- resultado (suma x y)))
 
 
+;(define (post socialnetwork)(lambda (date)(lambda (content))))
+
+(define prueba (lambda (a)(lambda (content . b)
+                          b)))
+;(define prueba (lambda (que . user) user))
+(define post (lambda (socialnetwork)
+  (lambda (date) (lambda (contenido . usuarios)usuarios))))

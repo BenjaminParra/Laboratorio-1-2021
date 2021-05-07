@@ -1,5 +1,7 @@
 #lang racket
 
+(provide (all-defined-out))
+
 (define (date dd mm yyyy)
          (list dd mm yyyy))
 ;Funcion que selecciona el dia de la fecha
@@ -22,11 +24,11 @@
 
 
 
-(define (isDate date)
-        (if (and(not(number? (getDD date)))(not(<= (getDD date) 31)))
+(define (date? date)
+        (if (or(not(number? (getDD date)))(not(<= (getDD date) 31)))
             #f
-            (if (and (not (number? (getMM date)))(not (<= (getMM date)12)))
+            (if (or (not (number? (getMM date)))(not (<= (getMM date)12)))
                 #f
-                (if (and (not (number? (getMM date)))(not (>= (getYY date)2021)))
+                (if (or (not (number? (getYY date)))(not (>= (getYY date)2021)))
                     #f
                     #t))))

@@ -9,7 +9,7 @@
 ;descripción: Permite crear un usuario
 ;dom: string X string X lista X lista
 ;rec: lista
-(define (creaUsuario user pass amigos perfil)
+(define (user user pass amigos perfil)
   (if (and (string? user)(string? pass)
            (list? amigos)(empty? amigos)
            (list? perfil)(empty? perfil))
@@ -81,7 +81,7 @@
 ;rec: usuario
 (define (setNombre usuario nombre)
   (if (validaUsuario usuario)
-      (creaUsuario nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario))
+      (user nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario))
       null
       )
   )
@@ -91,10 +91,24 @@
 ;rec: usuario
 (define (setPassword usuario password)
   (if (validaUsuario usuario)
-      (creaUsuario (getUser usuario) password (getAmigos usuario)(getPerfil usuario))
+      (user (getUser usuario) password (getAmigos usuario)(getPerfil usuario))
       null
       )
   )
 
-    
+#| Funcion que se encarga de tranforma una fila a string
+ Entrada: fila x string
+ Salida: String|#
+(define(listToString lista str)
+  (if (null? lista)
+      str
+      (if(string? (car lista))
+         (listToString (cdr lista)(string-append str " " (car lista)))
+         (listToString (cdr lista)(string-append str " "(number->string(car lista)))))
+      )
+  )
+
+(define (post . args) args)
+
+
       

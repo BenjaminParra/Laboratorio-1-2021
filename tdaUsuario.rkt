@@ -1,5 +1,6 @@
 #lang racket
 (provide (all-defined-out))
+(require "Date.rkt")
 ;TDA USUARIO
 ;user string pass string amigos lista de Usuarios, perfil lista de publicaciones
 ;cuando se registre un usuario se verificara que solo sean letras y numeros
@@ -7,13 +8,14 @@
 
 ;CONSTRUCTOR
 ;descripción: Permite crear un usuario
-;dom: string X string X lista X lista
+;dom: string X string X lista X lista x tda date
 ;rec: lista
-(define (creaUsuario user pass amigos perfil)
+(define (user user pass amigos perfil date)
   (if (and (string? user)(string? pass)
            (list? amigos)(empty? amigos)
-           (list? perfil)(empty? perfil))
-      (list user pass amigos perfil)
+           (list? perfil)(empty? perfil)
+           (date? date))
+      (list user pass amigos perfil date)
       null
       )
   )
@@ -26,13 +28,13 @@
 (define (validaUsuario usuario)
   ;(if (boolean? usuario)
       ;#f
-      (if (and (= 4 (length usuario))(not(= 0 (string-length (car usuario))))(not(= 0(string-length(cadr usuario)))))
+      (if (and (= 5 (length usuario))(not(= 0 (string-length (car usuario))))(not(= 0(string-length(cadr usuario))))(date? (car(cdr(cdddr usuario)))))
           #t
           #f
           )
       ;)
   )
-;(creaUsuario "Benja" "123" '() '())
+;(user "Benja" "123" '() '())
 
 ;SELECTORES
 ;descripción: Función que retorna el nombre del usuario
@@ -73,6 +75,13 @@
       0
       )
   )
+;(car(cdr(cdddr(user "Benja" "123" '() '() (date 01 02 2021)))))
+(define (getDate usuario)
+    (if (validaUsuario usuario)
+      (car(cdr(cdddr usuario)))
+      0
+      )
+  )
 
 
 ;Modificadores
@@ -81,17 +90,17 @@
 ;rec: usuario
 (define (setNombre usuario nombre)
   (if (validaUsuario usuario)
-      (creaUsuario nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario))
+      (user nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario))
       null
       )
   )
-;(creaUsuario "Benja" "123" '() '())
+;(user "Benja" "123" '() '())
 ;descripción: Función que crea un nuevo usuario a partir de un usuario de entrada reemplazando el valor correspondiente a lacontraseña del usuario
 ;dom: usuario x string
 ;rec: usuario
 (define (setPassword usuario password)
   (if (validaUsuario usuario)
-      (creaUsuario (getUser usuario) password (getAmigos usuario)(getPerfil usuario))
+      (user (getUser usuario) password (getAmigos usuario)(getPerfil usuario))
       null
       )
   )

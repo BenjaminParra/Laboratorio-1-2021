@@ -1,11 +1,72 @@
 #lang racket
 (require "tdaUsuario.rkt")
+(require "socialNetwork.rkt")
+(require "Date.rkt")
 ;TDA POST
 ;date es la fecha de creacion de la cuenta
-
-
+;   sn                                     fecha          string            user1 user2
+;(((login twitter “user” “pass” post) (date 30 10 2020)) “mi primer post” “user1” “user2”)
 ;(post socialNetwork) asi debe ser
 
+;ESTO SE USA
+(define (post socialnetwork)
+  (lambda (date) (lambda (contenido . usuarios)(list socialnetwork date usuarios))))
+
+(define(publicacion user date contenido listaUsers)
+  (if (and (validaUsuario user)(date? date) (string? contenido))
+      (list user date contenido listaUsers );stringPublicacion)
+      null))
+
+(define(publicaEnUno sn user date contenido)
+  (if (and(socialnetwork? sn)(validaUsuario user)(date? date))
+      (setListaPost sn (publicacion user date contenido '()))
+      #f))
+#|
+;QUIERO VERIFICAR SI EL CONTENIDO ES VALIDO, LUEGO PUBLICAR EN EL MURO DEL USUARIO, ESTA FUNCION SIRVE PARA EL MISMO Y PARA EL OTRO
+(define(publicaMuroUser user date contenido)
+  (if(and (validaUsuario user)(date? date)(string? contenido)())))|#
+;descripcion: Funcion que valida que el contenido en si sea valido 
+;dom: string
+;rec: boolean
+(define (validaContenidoPost contenido)
+  (cond
+    [(not(string? contenido))(error "Ingresa un string por favor")]
+    [(not(> (string-length contenido)0))(error "Ingrese un contenido valido para la publicacion")]
+    [(and (validaContenido (string->list contenido))(validaTipo (string->list contenido))) #t]))
+
+;descripcion: Funcion que valida el contenido no sea nulo
+;dom: lista
+;rec: boolean
+(define(validaContenido listaPalabra)
+  (cond
+    [(null? listaPalabra)#f]
+    [(> 0 (string-length (list->string(reverse (cdr(reverse (separaContenido listaPalabra)))))))#t]))
+
+;descripcion: Funcion que separa el contenido del tipo (argumentos del post) 
+;dom: lista
+;rec: lista
+(define(separaContenido listaPalabra)
+  (if(null? listaPalabra)
+      null
+     (if (eqv? #\. (car listaPalabra))
+         (list listaPalabra)
+         (cons(car listaPalabra)(separaContenido (cdr listaPalabra))))))
+
+;descripcion: Funcion que valida que el tipo del contenido sea valido 
+;dom: lista
+;rec: boolean
+(define(validaTipo listaPalabra)
+  (cond
+      [(null? listaPalabra)(error "El contenido de la publicacion es nulo")]
+      [(equal? ".photo"  (list->string (car (reverse (separaContenido listaPalabra)))))#t]
+      [(equal? ".video"  (list->string (car (reverse (separaContenido listaPalabra)))))#t]
+      [(equal? ".url"  (list->string (car (reverse (separaContenido listaPalabra)))))#t]
+      [(equal? ".text"  (list->string (car (reverse (separaContenido listaPalabra)))))#t]
+      [(equal? ".audio" (list->string (car (reverse (separaContenido listaPalabra)))))#t]
+      [(error "no es valido el tipo")]))
+
+
+;(list->string (car (reverse (separaContenido (string->list "contenido.photo")))))
 
 #| Funcion que se encarga de tranforma una fila a string
  Entrada: fila x string
@@ -20,7 +81,7 @@
   )
 
 #|(define (post socialNetwork)
-  (lambda (getUser)(lambda getDate)))
+  (lambda (contenido)(lambda contenido. users)))
  )|#
 
 
@@ -53,7 +114,7 @@
 
 ;Funcion Creadora post
 ;User1 date contenido tipo user 2(opcional)
-(define (creaPost . elementos)elementos)
+(define (creaPost . elementos)(creaPublicacion elementos))
 
 #|SELECTORES|#
 ;descripción: Función que retorna el usuario que realiza el post
@@ -71,5 +132,3 @@
 (define prueba (lambda (a)(lambda (content . b)
                           b)))
 ;(define prueba (lambda (que . user) user))
-(define post (lambda (socialnetwork)
-  (lambda (date) (lambda (contenido . usuarios)usuarios))))

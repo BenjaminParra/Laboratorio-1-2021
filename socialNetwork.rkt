@@ -2,19 +2,20 @@
 ;TDA SOCIAL
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
+;(require "register.rkt")
 (provide (all-defined-out))
 #|REPRESENTACION
 string X TDA date X funcionEncriptadora X funcionDesincrptadora
 (list nombreRedSocial Fecha FuncEncriptadora FuncDesincriptadora|#
 
  ;(socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn")
-
+#|
 (define (redSocial name date usuarios publicaciones)
   (if (and(or (equal? "facebook" name)(equal? "instagram" name)(equal? "twitter" name))
       (map validaUsuario usuarios)(date? date));crear tda publicacion para verificar si son del tipo y asi poder hacer un list user publicaciones
              #t
              #f)
-         )
+         )|#
 (define (args . list)list)
 ;CONSTRUCTOR
 ;descripción: Permite crear una redSocial
@@ -119,6 +120,18 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       )
   )
 
+(define (setListaPost sn post)
+  (if (socialnetwork? sn)
+      (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
+                                (appendLista post (getListaPost sn))))
+          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
+                                (appendLista post (getListaPost sn)))
+          '()
+          )
+      '()
+      )
+  )
+
 ;descripción: Función que verifica si el nombre del user está registrado en el socialnetwork
 ;dom: socialnetwork x string
 ;rec: boolean
@@ -176,7 +189,7 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
 
 
 
-          
+     
 ;(appendLista(user "Benja" "123" '() '())(list(user "Benja" "123" '() '())(user "chilo" "123" '() '())(user "juli" "123" '() '())))
 ;compara string (string-ci=? "Que" "qUe")
 

@@ -8,17 +8,29 @@
 
 ;CONSTRUCTOR
 ;descripción: Permite crear un usuario
-;dom: string X string X lista X lista x tda date
+;dom: string X string X lista X lista x tda date x string
 ;rec: lista
-(define (user user pass amigos perfil date)
+(define (user user pass amigos perfil date estado)
   (if (and (string? user)(string? pass)
-           (list? amigos)(empty? amigos)
-           (list? perfil)(empty? perfil)
-           (date? date))
-      (list user pass amigos perfil date)
+           (list? amigos);(empty? amigos)
+           (list? perfil);(empty? perfil)
+           (date? date)(string? estado))
+      (list user pass amigos perfil date estado)
       null
       )
   )
+;(list(user "Benja" "123" '() '()(date 01 02 2021)"off")(user "chilo" "123" '() '()(date 01 02 2021)"off")(user "juli" "123" '() '()(date 01 02 2021)"off"))
+(define (inicializaUser user pass amigos perfil date estado)
+  (if (and (string? user)(string? pass)
+           (list? amigos)(empty? amigos)
+           (list? perfil)(empty? perfil)
+           (date? date)(string? estado))
+      (list user pass amigos perfil date estado)
+      null
+      )
+  )
+
+
 ;PERTENENCIA
 ;descripción: Función que permite determinar si un elemento cualquiera es del tipo usuario
 ;             se implementa a partir del constructor
@@ -26,9 +38,9 @@
 ;dom: elemento de cualquier tipo
 ;rec: boolean
 (define (validaUsuario usuario)
-  ;(if (boolean? usuario)
+  ;(if (boolean? usuario)¬u¬ 
       ;#f
-      (if (and (= 5 (length usuario))(not(= 0 (string-length (car usuario))))(not(= 0(string-length(cadr usuario))))(date? (car(cdr(cdddr usuario)))))
+      (if (and (= 6 (length usuario))(not(= 0 (string-length (car usuario))))(not(= 0(string-length(cadr usuario))))(date? (car(cdr(cdddr usuario)))))
           #t
           #f
           )
@@ -76,9 +88,21 @@
       )
   )
 ;(car(cdr(cdddr(user "Benja" "123" '() '() (date 01 02 2021)))))
+;descripción: Función que retorna el date del usuario
+;dom: usuario
+;rec: date
 (define (getDate usuario)
     (if (validaUsuario usuario)
       (car(cdr(cdddr usuario)))
+      0
+      )
+  )
+;descripción: Función que retorna el estado del usuario ya sea online u offline 
+;dom: usuario
+;rec: lista
+(define (getEstado usuario)
+    (if (validaUsuario usuario)
+      (car(cddr(cdddr usuario)))
       0
       )
   )
@@ -90,7 +114,7 @@
 ;rec: usuario
 (define (setNombre usuario nombre)
   (if (validaUsuario usuario)
-      (user nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario))
+      (user nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario)(getDate usuario)(getEstado usuario))
       null
       )
   )
@@ -100,7 +124,17 @@
 ;rec: usuario
 (define (setPassword usuario password)
   (if (validaUsuario usuario)
-      (user (getUser usuario) password (getAmigos usuario)(getPerfil usuario))
+      (user (getUser usuario) password (getAmigos usuario)(getPerfil usuario)(getDate usuario)(getEstado usuario))
+      null
+      )
+  )
+
+;descripción: Función que cambia el estado del usuario
+;dom: usuario x string
+;rec: usuario
+(define (setEstado usuario estado)
+  (if (validaUsuario usuario)
+      (user (getUser usuario) (getPassword usuario) (getAmigos usuario)(getPerfil usuario)(getDate usuario) estado)
       null
       )
   )

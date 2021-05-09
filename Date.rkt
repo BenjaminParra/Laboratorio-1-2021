@@ -1,7 +1,6 @@
 #lang racket
 
 (provide (all-defined-out))
-
 (define (date dd mm yyyy)
          (if (and (integer? dd)(integer? mm)(integer? yyyy)
                   (> dd 0)(> mm 0)(<= mm 12)(> yyyy 0)

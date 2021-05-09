@@ -1,13 +1,14 @@
 #lang racket
+(require "socialNetwork.rkt")
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
-(require "socialNetwork.rkt")
+
 (provide (all-defined-out))
 
 (define (register socialnetwork date username password)
   (if (and (socialnetwork? socialnetwork)(date? date) (string? username)(string? password))
       (if(registradoSN? socialnetwork username)
-         (display "Este usuario se encuentra registrado \n . Ingrese de nuevo la funcion")
+         (display "Este usuario se encuentra registrado. \n Ingrese de nuevo la funcion")
          (if(socialnetwork? (list (getNameSN socialnetwork)(getDateSN socialnetwork)
                                   (getFnEnc socialnetwork)(getFnDesc socialnetwork)
                                   (appendLista (registra socialnetwork date username password)(getListaUser socialnetwork))
@@ -37,7 +38,7 @@
    [(not(>= (string-length username)4))(error "Ingrese un Username de minimo 4 caracteres")]
    [(contieneSpace (string->list username))(error "Ingrese un Username sin espacios")]
    [(contieneSpace (string->list password))(error "Ingrese un password sin espacios")]
-   [(user username password '()'() date)]))
+   [(inicializaUser username password '()'() date "online")]))
 
 ;(char-numeric? #\0)
 
@@ -65,7 +66,7 @@
 ;dom: lista char
 ;rec: boolean
 (define(contieneChar lista)
-  (if (existeEnLista #t (map char? lista))
+  (if (existeEnLista #t (map char-alphabetic? lista))
           #t
           #f)
   )

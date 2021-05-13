@@ -1,5 +1,6 @@
 #lang racket
 (provide (all-defined-out))
+
 (require "Date.rkt")
 ;TDA USUARIO
 ;user string pass string amigos lista de Usuarios, perfil lista de publicaciones
@@ -81,7 +82,7 @@
 ;descripción: Función que retorna el perfil del usuario
 ;dom: usuario
 ;rec: lista
-(define (getPerfil usuario)
+(define (getListaPostUser usuario)
   (if (validaUsuario usuario)
       (cadddr usuario)
       0
@@ -114,7 +115,7 @@
 ;rec: usuario
 (define (setNombre usuario nombre)
   (if (validaUsuario usuario)
-      (user nombre (getPassword usuario) (getAmigos usuario)(getPerfil usuario)(getDate usuario)(getEstado usuario))
+      (user nombre (getPassword usuario) (getAmigos usuario)(getListaPostUser usuario)(getDate usuario)(getEstado usuario))
       null
       )
   )
@@ -124,17 +125,37 @@
 ;rec: usuario
 (define (setPassword usuario password)
   (if (validaUsuario usuario)
-      (user (getUser usuario) password (getAmigos usuario)(getPerfil usuario)(getDate usuario)(getEstado usuario))
+      (user (getUser usuario) password (getAmigos usuario)(getListaPostUser usuario)(getDate usuario)(getEstado usuario))
       null
       )
   )
+
+(define (setListaPostUser usuario post)
+  (if (validaUsuario usuario)
+      (user (getUser usuario) (getPassword usuario) (getAmigos usuario)(appendListaUser post (getListaPostUser usuario))
+            (getDate usuario)(getEstado usuario))
+      null
+          )
+      
+      )
+
+(define (setListaAmigos usuario amigo)
+  (if (validaUsuario usuario)
+      (user (getUser usuario) (getPassword usuario) (appendListaUser amigo(getAmigos usuario))(getListaPostUser usuario)
+            (getDate usuario)(getEstado usuario))
+      null
+          )
+      
+      )
+  
+
 
 ;descripción: Función que cambia el estado del usuario
 ;dom: usuario x string
 ;rec: usuario
 (define (setEstado usuario estado)
   (if (validaUsuario usuario)
-      (user (getUser usuario) (getPassword usuario) (getAmigos usuario)(getPerfil usuario)(getDate usuario) estado)
+      (user (getUser usuario) (getPassword usuario) (getAmigos usuario)(getListaPostUser usuario)(getDate usuario) estado)
       null
       )
   )
@@ -150,6 +171,15 @@
          (listToString (cdr lista)(string-append str " "(number->string(car lista)))))
       )
   )
+
+;descripción: Funcion añade una lista a una matriz (entiendase matriz como una lista de lista)
+;dom: lista X matriz
+;rec: matriz
+(define (appendListaUser lista matriz)
+  (if (or (list? lista)(null? matriz))
+      (list  lista) 
+      (cons (car matriz)(appendListaUser lista (cdr matriz)))))
+
 
 (define (post . args) args)
 

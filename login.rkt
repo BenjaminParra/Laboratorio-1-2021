@@ -2,6 +2,7 @@
 (require "tdaUsuario.rkt")
 (require "socialNetwork.rkt")
 (require "Date.rkt")
+;(require "post.rkt")
 (provide (all-defined-out))
 ;(login socialnetwork username password operation)
 #|
@@ -17,7 +18,7 @@
    [(contieneSpace (string->list password))(error "Ingrese un password sin espacios")]
    [(not(registradoSN? socialnetwork username))(error "El usuario no esta registrado")]
    []))|#
-
+;LUEGO DE TERMINAR UNA FUNCION DEBE COLOCAR OFF EN EL USUARIO
 (define(verificaLogin user pass listaUser)
   (if(null? listaUser)
      (display "Usuario no encontrado")

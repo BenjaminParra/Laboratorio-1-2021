@@ -2,6 +2,7 @@
 (require "socialNetwork.rkt")
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
+;(require "post.rkt")
 
 (provide (all-defined-out))
 
@@ -20,8 +21,13 @@
             (display "caca"))
          )
       (display "aca")))
+
+#|(setUser (register (register (socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn")
+ (date 1 3 21) "benja" "benja123")(date 1 3 21) "chilo" "benja123")(user "benja" "benja123" '() '() '(1 3 21) "online")setPassword "comelo123")|#
+#|(setUser (register (register (socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn")
+ (date 1 3 21) "benja" "benja123")(date 1 3 21) "chilo" "benja123")(user "benja" "benja123" '() '() '(1 3 21) "online")setListaPostUser'("este es un post de pana"))|#
   
-;(user "Benja" "123" '() '() (date 01 02 2021))
+;(user "Benja" "123" '() '() (date 01 02 2021) "online")
 ;(registra (socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn") (date 1 3 21) "benja" "benja123")
 #|
 (define (registra sn date username password)

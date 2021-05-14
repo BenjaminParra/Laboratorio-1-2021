@@ -12,12 +12,19 @@
            (date? date)
            (registradoSN? socialnetwork user2))
             (if (not(sonAmigosFollow? user2 (getAmigos(getUserOnlineSN socialnetwork))))
-                (turnOff(aplicaSetUserPost socialnetwork (getUserOnlineSN socialnetwork)
-                                   setListaAmigos (getTdaUser socialnetwork user2)))
+                #|(turnOff(aplicaSetUserPost socialnetwork (getUserOnlineSN socialnetwork)
+                                   setListaAmigos (getTdaUser socialnetwork user2)))|#
+                (turnOff (setListaAmigos ))
                 (turnOff socialnetwork))
             #f)
        )))
-
+#|((aplicaPublicaUser sn (car(getListaUser '("facebook"
+  (25 10 2021)
+  "encryptFn"
+  "encryptFn"
+  (("benja" "123" () ((("benja" "123" () () (1 2 2021) "online") (1 2 2021) "hola123.text" ())) (1 2 2021) "online")
+   ("chilo" "123" () () (1 2 2021) "offline"))
+  ((("benja" "123" () () (1 2 2021) "online") (1 2 2021) "hola123.text" ()))))) '("chilo" "juli")) '(25 10 2021) "textoParaOtro.text")|#
 ;descripción: Función que verifica si usuario está en la lista de amigos
 ;dom: string X lista
 ;rec: boolean

@@ -176,7 +176,7 @@
 ;dom: lista X matriz
 ;rec: matriz
 (define (appendListaUser lista matriz)
-  (if (or (list? lista)(null? matriz))
+  (if (and (list? lista)(null? matriz)) ;verificar
       (list  lista) 
       (cons (car matriz)(appendListaUser lista (cdr matriz)))))
 

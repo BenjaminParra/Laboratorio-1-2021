@@ -132,6 +132,47 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       )
   )
 
+(define(setListaUser sn listaUser)
+  (if (socialnetwork? sn)
+      (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)listaUser
+                                (getListaPost sn)))
+          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)listaUser
+                                (getListaPost sn))
+          '()
+          )
+      '()
+      ))
+;Funcion que funciona para aplicar
+(define(aplicaSetUserPost sn user funcion variableaux)
+  (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(setUser sn user funcion variableaux)
+                                (getListaPost sn)))
+          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(setUser sn user funcion variableaux);aqui se puede comparar
+                                (getListaPost sn))
+          (display "CAMBIAR A COND")
+          )
+  )
+(define(comparaListas l1 l2 )
+(if (or (null? l1)(null? l2))
+    null
+   (if (equal? (car l1)(car l2))
+      (cons (car l1) (comparaListas (cdr l1) (cdr l2)))
+      (cons (append (car l1) (car l2))(comparaListas (cdr l1)(cdr l2))))))
+;(comparaListas '("chilo" "123" ((1 2 3)) '() (1 2 2021) "offline") '("chilo" "123" ((1 5 3)) '() (1 2 2021) "offline"))
+
+
+
+(define(setUser sn user funcion variableaux)
+  (if (and (socialnetwork? sn)(validaUsuario user)(registradoSN? sn (getUser user)))
+      (funcionAuxSetUser user (getListaUser sn) funcion variableaux)
+      #f))
+;sn (getUserOnlineSN sn) setEstado "offline" 
+
+(define (funcionAuxSetUser user listaUser funcion variableaux)
+  (if (null? listaUser)
+      listaUser
+      (if (equal? (getUser user) (car (car listaUser)))
+          (cons (funcion user variableaux)(cdr listaUser))
+          (cons (car listaUser)(funcionAuxSetUser user (cdr listaUser) funcion variableaux)))))
 ;descripción: Función que verifica si el nombre del user está registrado en el socialnetwork
 ;dom: socialnetwork x string
 ;rec: boolean
@@ -159,6 +200,31 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       listaUser
       (cons(getUser (car listaUser))(getListaNames (cdr listaUser)))))
 
+;descripción: Funcion que en base al nombre del user obtiene el tda User
+(define (getTdaUser sn user)
+  (if (and (socialnetwork? sn)(string? user)(registradoSN? sn user))
+      (auxGetTdaUser user (getListaUser sn))
+     (display "1")
+      
+      ));valida si esta registrado, getslistaUser y se la paso a listaNombre y se la paso existe en lista
+
+(define (aplicaGetTdaUser sn listaUser)
+ (if(null? listaUser)
+    null
+  (if (and (socialnetwork? sn)(list? listaUser)(registradoSN? sn (car listaUser)))
+      (cons (auxGetTdaUser (car listaUser) (getListaUser sn))(aplicaGetTdaUser sn (cdr listaUser)))
+      (aplicaGetTdaUser sn (cdr listaUser)))))
+#|(applicaGetTdaUser (register (register (socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn")
+ (date 1 3 21) "benja" "benja123")(date 1 3 21) "chilo" "benja123") '("benja" "chilo"))|#
+
+(define (auxGetTdaUser user listaUser)
+  (if(equal? user (car(car listaUser)))
+     (car listaUser)
+     (auxGetTdaUser user (cdr listaUser))
+     )
+  )
+  
+
 ;descripción: Funcion encapsuladora de fnAuxExiste 
 ;dom: elemento x lista
 ;rec: boolean
@@ -182,6 +248,39 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
   (if (and (list? lista)(null? matriz))
       (list  lista) 
       (cons (car matriz)(appendLista lista (cdr matriz)))))
+
+
+;Funcion que dado un socialnetwork retorna un tda usuario cuando esté este online
+;
+;
+(define (getUserOnlineSN sn)
+  (if (null? (getListaUser sn))
+      '()
+      (if (equal? "online" (getEstado (car (getListaUser sn))))
+          (car (getListaUser sn))
+          (getUserOnlineSN (setListaUser sn (cdr (getListaUser sn)))))))
+
+;Funcion que luego se aplicar una funcion ya sea post o lo que sea se vuelve Offline
+(define(turnOff sn)
+  (if (socialnetwork? sn)
+      (setListaUser sn (setUser sn (getUserOnlineSN sn) setEstado "offline" ))
+      #f))
+
+#|
+(define(aplicaSetUserEstado sn user funcion variableaux)
+  (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(setUser sn user funcion variableaux)))
+                                (getListaPost sn)))
+          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(setUser sn user funcion variableaux)
+                                (getListaPost sn))
+          (display "CAMBIAR A COND")
+          )
+  )
+(define (aplicaSetUserEstadoListaAmigos sn )
+  (if(socialnetwork? sn)
+     (if (equal? (getUserOnlineSn sn)(car (getListaUser sn)))
+         (setUser sn (getUserOnlineSn sn) setEstado "offline")
+         (cons (car (getListaUser sn))(aplicaSetUserEstadoListaAmigos)))))|#
+
 
 
 

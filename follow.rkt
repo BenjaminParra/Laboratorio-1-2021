@@ -1,23 +1,40 @@
 #lang racket
+(provide (all-defined-out))
 ;(require "post.rkt")
 (require "tdaUsuario.rkt")
 (require "socialNetwork.rkt")
 (require "Date.rkt")
-(provide (all-defined-out))
 
-(provide (all-defined-out))
+
+
 (define(follow socialnetwork)
   (lambda (date)(lambda (user2)
     (if(and(socialnetwork? socialnetwork)
            (date? date)
            (registradoSN? socialnetwork user2))
             (if (not(sonAmigosFollow? user2 (getAmigos(getUserOnlineSN socialnetwork))))
-                #|(turnOff(aplicaSetUserPost socialnetwork (getUserOnlineSN socialnetwork)
-                                   setListaAmigos (getTdaUser socialnetwork user2)))|#
-                (turnOff (setListaAmigos ))
-                (turnOff socialnetwork))
-            #f)
+                (turnOffFollow(aplicaSetUserPost socialnetwork (getUserOnlineSN socialnetwork)
+                                   setListaAmigos (getTdaUser socialnetwork user2)))
+                
+                 (turnOffFollow socialnetwork))
+            #f) 
        )))
+;Funcion que luego se aplicar una funcion ya sea post o lo que sea se vuelve Offline
+(define(turnOffFollow sn)
+  (if (socialnetwork? sn)
+      (setListaUser sn (aplicaTurnOff (getListaUser sn)));(setUser sn (getUserOnlineSN sn) setEstado "offline" )))
+      #f))
+
+(define(aplicaTurnOff  listaUser)
+  
+      (if (null? listaUser)
+          listaUser
+          (if (eqv? (getEstado(car listaUser))"online")
+              (cons (setEstado (car listaUser) "offline")(cdr listaUser))
+              (cons (car listaUser)(aplicaTurnOff  (cdr listaUser)));ACAAA
+      )
+      )
+  )
 #|((aplicaPublicaUser sn (car(getListaUser '("facebook"
   (25 10 2021)
   "encryptFn"

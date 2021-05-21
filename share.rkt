@@ -1,0 +1,19 @@
+#lang racket
+(provide (all-defined-out))
+;(require "post.rkt")
+(require "tdaUsuario.rkt")
+(require "socialNetwork.rkt")
+(require "Date.rkt")
+#|
+(define(share socialnetwork)
+  (lambda (date) (lambda (postID . usuarios)
+                   )))|#
+
+
+
+(define(existeEnLista user listaUser)
+  (if (null? listaUser)
+      #f
+      (if (eqv? user (car listaUser))
+          #t
+          (existeEnLista user (cdr listaUser)))))

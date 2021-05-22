@@ -261,6 +261,16 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       (if (equal? "online" (getEstado (car (getListaUser sn))))
           (car (getListaUser sn))
           (getUserOnlineSN (setListaUser sn (cdr (getListaUser sn)))))))
+
+;Funcion que obtiene un elemento de una lista dado un ID
+;DOM: lista x entero
+;REC: elementoLista
+(define (getElemID lista id)
+  (if (and (null? lista)(not(> id 0)))
+      #f
+      (if (= id 1)
+          (car lista)
+          (getElemID (cdr lista) (- id 1)))))
 #|
 ;Funcion que luego se aplicar una funcion ya sea post o lo que sea se vuelve Offline
 (define(turnOff sn)

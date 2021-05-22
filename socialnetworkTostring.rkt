@@ -4,7 +4,8 @@
 (require "Date.rkt")
 
 (provide (all-defined-out))
-;(define(social->string socialnetwork))
+(define(social->string socialnetwork)socialnetwork)
+
 ;(socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn" listaUser listaPost)
 ;user pass amigos perfil date estado
 ;(cadddr post)

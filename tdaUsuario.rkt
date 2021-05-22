@@ -183,5 +183,13 @@
 
 (define (post . args) args)
 
-
+;descripción: Función que verifica si usuario está en la lista de amigos
+;dom: string X lista
+;rec: boolean
+(define (sonAmigos? user listaAmigo)
+  (if (null? listaAmigo)
+      #f
+      (if (equal? user (getUser(car listaAmigo)))
+          #t
+          (sonAmigos? user (cdr listaAmigo)))))
       

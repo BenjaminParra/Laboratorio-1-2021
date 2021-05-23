@@ -1,6 +1,16 @@
 #lang racket
-(provide (all-defined-out))
-
+;(provide (all-defined-out))
+(provide validaUsuario)
+(provide getUser)
+(provide getEstado)
+(provide getAmigos)
+(provide setListaAmigos)
+(provide setEstado)
+(provide getListaPostUser)
+(provide listToString)
+(provide getPassword)
+(provide inicializaUser)
+(provide setListaPostUser)
 (require "Date.rkt")
 ;TDA USUARIO
 ;user string pass string amigos lista de Usuarios, perfil lista de publicaciones
@@ -183,13 +193,5 @@
 
 (define (post . args) args)
 
-;descripción: Función que verifica si usuario está en la lista de amigos
-;dom: string X lista
-;rec: boolean
-(define (sonAmigos? user listaAmigo)
-  (if (null? listaAmigo)
-      #f
-      (if (equal? user (getUser(car listaAmigo)))
-          #t
-          (sonAmigos? user (cdr listaAmigo)))))
+
       

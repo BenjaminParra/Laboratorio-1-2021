@@ -1,17 +1,21 @@
 #lang racket
-(provide (all-defined-out))
-;(require "post.rkt")
+;(provide (all-defined-out))
+(require "post.rkt")
 (require "tdaUsuario.rkt")
 (require "socialNetwork.rkt")
 (require "Date.rkt")
+
+(provide postShare)
+(provide aplicaShareToAmigo)
 ;sn user funcion variableaux
+#|
 (define(share socialnetwork)
   (lambda (date) (lambda (postID . usuarios)
                    (if (null? usuarios)
                        (aplicaSetUserPost socialnetwork (getUserOnlineSN socialnetwork)
                                    setListaPostUser (((postShare (getUserOnlineSN socialnetwork))date)
                                                      (getElemID (getListaPost socialnetwork) postID)))
-                       (aplicaShareToAmigo socialnetwork (getUserOnlineSN socialnetwork)date usuarios postID)))))
+                       (aplicaShareToAmigo socialnetwork (getUserOnlineSN socialnetwork)date usuarios postID)))))|#
                    
 
 (define(postShare user)(lambda (date)

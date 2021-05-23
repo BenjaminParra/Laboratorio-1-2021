@@ -5,7 +5,7 @@
 (require "socialNetwork.rkt")
 (require "Date.rkt")
 
-
+#|
 
 (define(follow socialnetwork)
   (lambda (date)(lambda (user2)
@@ -18,7 +18,8 @@
                 
                  (turnOffFollow socialnetwork))
             #f) 
-       )))
+       )))|#
+#|
 ;Funcion que luego se aplicar una funcion ya sea post o lo que sea se vuelve Offline
 (define(turnOffFollow sn)
   (if (socialnetwork? sn)
@@ -34,14 +35,16 @@
               (cons (car listaUser)(aplicaTurnOff  (cdr listaUser)));ACAAA
       )
       )
-  )
-#|((aplicaPublicaUser sn (car(getListaUser '("facebook"
+  )|#
+
+#|
+((aplicaPublicaUser sn (car(getListaUser '("facebook"
   (25 10 2021)
   "encryptFn"
   "encryptFn"
   (("benja" "123" () ((("benja" "123" () () (1 2 2021) "online") (1 2 2021) "hola123.text" ())) (1 2 2021) "online")
    ("chilo" "123" () () (1 2 2021) "offline"))
-  ((("benja" "123" () () (1 2 2021) "online") (1 2 2021) "hola123.text" ()))))) '("chilo" "juli")) '(25 10 2021) "textoParaOtro.text")|#
+  ((("benja" "123" () () (1 2 2021) "online") (1 2 2021) "hola123.text" ()))))) '("chilo" "juli")) '(25 10 2021) "textoParaOtro.text")
 ;descripción: Función que verifica si usuario está en la lista de amigos
 ;dom: string X lista
 ;rec: boolean
@@ -50,4 +53,4 @@
       #f
       (if (equal? user (getUser(car listaAmigo)))
           #t
-          (sonAmigosFollow? user (cdr listaAmigo)))))
+          (sonAmigosFollow? user (cdr listaAmigo)))))|#

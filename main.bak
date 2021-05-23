@@ -1,0 +1,5 @@
+#lang racket
+(require "socialNetwork.rkt")
+(require "tdaUsuario.rkt")
+(require "register.rkt")
+(require "post.rkt")

@@ -2,9 +2,15 @@
 ;TDA SOCIAL
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
+#|(provide setListaAmigos)
+(provide socialnetwork?)
+(provide registradoSN?)
+(provide getUserOnlineSN)
+(provide aplicaSetUserPost)|#
 ;(require "post.rkt")
 ;(require "register.rkt")
 (provide (all-defined-out))
+
 #|REPRESENTACION
 string X TDA date X funcionEncriptadora X funcionDesincrptadora
 (list nombreRedSocial Fecha FuncEncriptadora FuncDesincriptadora|#
@@ -121,12 +127,30 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       )
   )
 
+
+(define(getUltimoElemento lista)
+  (if (= 1 (length lista))
+      (car lista)
+      (getUltimoElemento (cdr lista))))
+
 (define (setListaPost sn post)
   (if (socialnetwork? sn)
       (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
                                 (appendLista post (getListaPost sn))))
           (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
                                 (appendLista post (getListaPost sn)))
+          '()
+          )
+      '()
+      )
+  )
+
+(define(setListaPostSN sn newListaPost)
+  (if (socialnetwork? sn)
+      (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
+                                newListaPost))
+          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
+                                newListaPost)
           '()
           )
       '()
@@ -271,7 +295,7 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       (if (= id 1)
           (car lista)
           (getElemID (cdr lista) (- id 1)))))
-#|
+
 ;Funcion que luego se aplicar una funcion ya sea post o lo que sea se vuelve Offline
 (define(turnOff sn)
   (if (socialnetwork? sn)
@@ -287,7 +311,7 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
               (cons (car listaUser)(aplicaTurnOff  (cdr listaUser)));ACAAA
       )
       )
-  )|#
+  )
 
 #|
 (define(aplicaSetUserEstado sn user funcion variableaux)

@@ -1,11 +1,12 @@
 #lang racket
 (require "tdaUsuario.rkt")
 (require "socialNetwork.rkt")
-(require "Date.rkt")
+;(require "Date.rkt")
 ;(require "post.rkt")
-(provide (all-defined-out))
+(provide verificaLogin)
+;(provide (all-defined-out))
 ;(login socialnetwork username password operation)
-
+#|
 (define(login socialnetwork username password operation)(lambda (date)(lambda (param1 . param2)
   (cond
    [(not(socialnetwork? socialnetwork)) (error "Ingrese un socialnetwork valido")]
@@ -20,7 +21,7 @@
    [(verificaLogin username password (getListaUser socialnetwork))
     (if (eqv? operation "socialnetwork->string")
         (operation (aplicaSetUserPost socialnetwork (getTdaUser socialnetwork username) setEstado "online"))
-        (((operation (aplicaSetUserPost socialnetwork (getTdaUser socialnetwork username) setEstado "online"))date)param1 param2))]))))
+        (((operation (aplicaSetUserPost socialnetwork (getTdaUser socialnetwork username) setEstado "online"))date)param1 param2))]))))|#
 ;LUEGO DE TERMINAR UNA FUNCION DEBE COLOCAR ON EN EL USUARIO
 (define(verificaLogin user pass listaUser)
   (if(null? listaUser)

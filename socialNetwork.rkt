@@ -2,6 +2,7 @@
 ;TDA SOCIAL
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
+;(require "socialnetworkTostring.rkt")
 #|(provide setListaAmigos)
 (provide socialnetwork?)
 (provide registradoSN?)
@@ -144,6 +145,24 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       '()
       )
   )
+;(remove-elem(getUltimoElemento(getListaPost FBPOST))(getListaPost FBPOST))
+(define(replacePost sn post)
+  (if (socialnetwork? sn)
+      (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
+                                (appendLista post (getListaPost sn))))
+          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc sn)(getListaUser sn)
+                                (appendLista post (remove-elemSN(getUltimoElemento(getListaPost sn))(getListaPost sn))))
+          '()
+          )
+      '()
+      )
+  )
+(define (remove-elemSN elem lista)
+  (if (null? lista)
+      lista
+      (if (eqv? elem (car lista))
+          (remove-elemSN elem (cdr lista))
+          (cons (car lista)(remove-elemSN elem (cdr lista))))))
 
 (define(setListaPostSN sn newListaPost)
   (if (socialnetwork? sn)
@@ -184,7 +203,10 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
       (cons (append (car l1) (car l2))(comparaListas (cdr l1)(cdr l2))))))
 ;(comparaListas '("chilo" "123" ((1 2 3)) '() (1 2 2021) "offline") '("chilo" "123" ((1 5 3)) '() (1 2 2021) "offline"))
 
-
+(define(appendListas matriz)
+  (if(null? matriz)
+     '()
+     (append (car matriz)(appendListas (cdr matriz)))))
 
 (define(setUser sn user funcion variableaux)
   (if (and (socialnetwork? sn)(validaUsuario user)(registradoSN? sn (getUser user)))

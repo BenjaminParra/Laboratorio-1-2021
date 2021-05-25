@@ -3,9 +3,9 @@
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
 ;(require "post.rkt")
-
-(provide (all-defined-out))
-
+(provide registra)
+;(provide (all-defined-out))
+#|
 (define (register socialnetwork date username password)
   (if (and (socialnetwork? socialnetwork)(date? date) (string? username)(string? password))
       (if(registradoSN? socialnetwork username)
@@ -20,7 +20,7 @@
                                   (getListaPost socialnetwork))
             (display "caca"))
          )
-      (display "aca")))
+      (display "aca")))|#
 
 #|(setUser (register (register (socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn")
  (date 1 3 21) "benja" "benja123")(date 1 3 21) "chilo" "benja123")(user "benja" "benja123" '() '() '(1 3 21) "online")setPassword "comelo123")|#

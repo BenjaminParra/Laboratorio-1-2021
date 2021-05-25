@@ -2,14 +2,6 @@
 ;TDA SOCIAL
 (require "tdaUsuario.rkt")
 (require "Date.rkt")
-;(require "socialnetworkTostring.rkt")
-#|(provide setListaAmigos)
-(provide socialnetwork?)
-(provide registradoSN?)
-(provide getUserOnlineSN)
-(provide aplicaSetUserPost)|#
-;(require "post.rkt")
-;(require "register.rkt")
 (provide (all-defined-out))
 
 #|REPRESENTACION
@@ -17,13 +9,7 @@ string X TDA date X funcionEncriptadora X funcionDesincrptadora
 (list nombreRedSocial Fecha FuncEncriptadora FuncDesincriptadora|#
 
  ;(socialnetwork "facebook" (date 25 10 2021) "encryptFn" "encryptFn" listaUser listaPost)
-#|
-(define (redSocial name date usuarios publicaciones)
-  (if (and(or (equal? "facebook" name)(equal? "instagram" name)(equal? "twitter" name))
-      (map validaUsuario usuarios)(date? date));crear tda publicacion para verificar si son del tipo y asi poder hacer un list user publicaciones
-             #t
-             #f)
-         )|#
+
 (define (args . list)list)
 ;CONSTRUCTOR
 ;descripción: Permite crear una redSocial

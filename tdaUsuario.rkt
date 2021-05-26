@@ -11,6 +11,7 @@
 (provide getPassword)
 (provide inicializaUser)
 (provide setListaPostUser)
+(provide getDate)
 (require "Date.rkt")
 ;TDA USUARIO
 ;user string pass string amigos lista de Usuarios, perfil lista de publicaciones
@@ -191,7 +192,16 @@
       (cons (car matriz)(appendListaUser lista (cdr matriz)))))
 
 
-(define (post . args) args)
+(define (post . args)
+  (if (null? post)
+      args
+      #f))
+#|
+(define (caca n1)
+  (lambda (n2) (lambda (n3 . n4)
+                 (if (null? n3)
+                     n3
+                     #f))))|#
 
 
       

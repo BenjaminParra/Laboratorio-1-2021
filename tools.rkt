@@ -12,6 +12,7 @@
 
 (provide verificaLogin)
 
+(provide desencriptaListaPost)
 
 (provide traducePost)
 (provide encryptFunction)
@@ -23,6 +24,7 @@
 ;(provide encriptaListaPostSN)
 (provide remove-elem)
 ;sn user funcion variableaux
+
 ;##################### FUNCIONES PARA EL SHARE##############################
 ;Funcion que construye un TDA postShare que es una representacion de que el usuario compartió una publicacion en el perfil de un amigo
 ;DOM: tda user x tda fecha x tda post x tda amigo
@@ -136,18 +138,18 @@
 ;REC: string
 (define(traduceUser user)
   (cond
-    [(and (null? (getListaPostUser user))(null? (getAmigos user)))(string-append "El Usuario " (getUser user) " no tiene amigos y no ha realizado alguna publicacion")]
+    [(and (null? (getListaPostUser user))(null? (getAmigos user)))(string-append "El Usuario " (getUser user)" Su fecha de registro es:" (traduceDate (getDate user)) "\n" " no tiene amigos y no ha realizado alguna publicacion")]
     [(and (null? (getListaPostUser user))(not(null? (getAmigos user))))(string-append "El Usuario " (getUser user)
                                             " sus amigos son "
                     (traduceAmigos (getListaNames(getAmigos user))) ", su perfil no contiene ninguna publicacion. ""El Usuario se encuentra "
                                                       (getEstado user)"\n")]
-    [(and (not(null? (getListaPostUser user)))(null? (getAmigos user)))(string-append "El Usuario " (getUser user)
+    [(and (not(null? (getListaPostUser user)))(null? (getAmigos user)))(string-append "El Usuario " (getUser user)" Su fecha de registro es:" (traduceDate (getDate user)) "\n"
                                             " no tiene amigos registrados, su perfil contiene:" "\n" "\n" (traduceListaPost (getListaPostUser user))"El Usuario se encuentra "
                                                       (getEstado user)"\n")]
     
-    [(string-append "El usuario " (getUser user) " sus amigos son "
+    [(string-append "El usuario " (getUser user)" Su fecha de registro es:" (traduceDate (getDate user)) "\n" "Sus amigos son "
                     (traduceAmigos (getListaNames(getAmigos user)))"\n"   "Su perfil contiene: " "\n" "\n"(traduceListaPost (getListaPostUser user)) "El Usuario se encuentra "
-                                                      (getEstado user)"\n")]))
+                                                      (getEstado user)"." "\n" )]))
 ;Funcion que aplica la funcion traduceUser a uns lista de tda User
 ;DOM: lista Tda user
 ;REC: string
@@ -226,11 +228,11 @@
   (if (null? listaPost)
       listaPost
       (append (encriptaLista (string->list (traducePost (car listaPost))))(encriptaListaPost (cdr listaPost)))))|#
-#|
+
 (define(desencriptaListaPost listaPost)
   (if (null? listaPost)
       listaPost
-      (append (desencriptaLista (string->list (traducePost (car listaPost))))(desencriptaListaPost (cdr listaPost)))))|#
+      (append (desencriptaLista (string->list (traducePost (car listaPost))))(desencriptaListaPost (cdr listaPost)))))
 #|(define(encriptaListaPostSN sn)
   (if (socialnetwork? sn)
       (setListaPostSN sn (encriptaListaPost (getListaPost sn)))

@@ -368,7 +368,7 @@
 0 -1 -1 0 1 #"\0"
 0 -1 1 #"\0"
 1.0 0 -1 -1 -1 -1 -1 -1 1 0 0 0 0 0 0.0 0.0 0.0 1.0 1.0 1.0 0 0 255 0 0
-0 -1 -1           0 2312 0 28 3 12 #"#lang racket"
+0 -1 -1           0 2357 0 28 3 12 #"#lang racket"
 0 0 24 29 1 #"\n"
 0 0 17 3 11 #";TDA SOCIAL"
 0 0 24 29 1 #"\n"
@@ -383,6 +383,13 @@
 0 0 24 3 1 #" "
 0 0 19 3 10 #"\"Date.rkt\""
 0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 17 3 1 #";"
+0 0 17 3 1 #"("
+0 0 17 3 5 #"requi"
+0 0 17 3 3 #"ere"
+0 0 17 3 1 #" "
+0 0 17 3 9 #"\"tools.\")"
 0 0 24 29 1 #"\n"
 0 0 24 3 1 #"("
 0 0 14 3 7 #"provide"
@@ -402,9 +409,9 @@
 0 0 24 29 1 #"\n"
 0 0 24 3 1 #" "
 0 0 17 3 2 #";("
-0 0 17 3 13 #"socialnetwork"
-0 0 17 3 1 #" "
-0 0 17 3 10 #"\"facebook\""
+0 0 17 3 15 #"socialnetwork \""
+0 0 17 3 8 #"facebook"
+0 0 17 3 1 #"\""
 0 0 17 3 2 #" ("
 0 0 17 3 4 #"date"
 0 0 17 3 1 #" "
@@ -412,15 +419,11 @@
 0 0 17 3 1 #" "
 0 0 17 3 2 #"10"
 0 0 17 3 1 #" "
-0 0 17 3 4 #"2021"
-0 0 17 3 2 #") "
-0 0 17 3 11 #"\"encryptFn\""
-0 0 17 3 1 #" "
-0 0 17 3 11 #"\"encryptFn\""
-0 0 17 3 1 #" "
-0 0 17 3 9 #"listaUser"
-0 0 17 3 1 #" "
-0 0 17 3 10 #"listaPost)"
+0 0 17 3 7 #"2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 22 #"\" listaUser listaPost)"
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 24 3 1 #"("
@@ -513,7 +516,8 @@
 0 0 24 3 2 #" ("
 0 0 14 3 11 #"string-ci=?"
 0 0 24 3 1 #" "
-0 0 19 3 10 #"\"facebook\""
+0 0 19 3 9 #"\"facebook"
+0 0 19 3 1 #"\""
 0 0 24 3 2 #" ("
 0 0 14 3 3 #"car"
 0 0 24 3 1 #" "
@@ -523,7 +527,8 @@
 0 0 24 3 12 #"           ("
 0 0 14 3 11 #"string-ci=?"
 0 0 24 3 1 #" "
-0 0 19 3 4 #"\"fb\""
+0 0 19 3 3 #"\"fb"
+0 0 19 3 1 #"\""
 0 0 24 3 2 #" ("
 0 0 14 3 3 #"car"
 0 0 24 3 1 #" "
@@ -533,7 +538,8 @@
 0 0 24 3 12 #"           ("
 0 0 14 3 11 #"string-ci=?"
 0 0 24 3 1 #" "
-0 0 19 3 11 #"\"instagram\""
+0 0 19 3 10 #"\"instagram"
+0 0 19 3 1 #"\""
 0 0 24 3 2 #" ("
 0 0 14 3 3 #"car"
 0 0 24 3 1 #" "
@@ -543,7 +549,8 @@
 0 0 24 3 12 #"           ("
 0 0 14 3 11 #"string-ci=?"
 0 0 24 3 1 #" "
-0 0 19 3 4 #"\"ig\""
+0 0 19 3 3 #"\"ig"
+0 0 19 3 1 #"\""
 0 0 24 3 2 #" ("
 0 0 14 3 3 #"car"
 0 0 24 3 1 #" "
@@ -553,7 +560,8 @@
 0 0 24 3 12 #"           ("
 0 0 14 3 11 #"string-ci=?"
 0 0 24 3 1 #" "
-0 0 19 3 9 #"\"twitter\""
+0 0 19 3 8 #"\"twitter"
+0 0 19 3 1 #"\""
 0 0 24 3 2 #" ("
 0 0 14 3 3 #"car"
 0 0 24 3 1 #" "
@@ -563,7 +571,8 @@
 0 0 24 3 12 #"           ("
 0 0 14 3 11 #"string-ci=?"
 0 0 24 3 1 #" "
-0 0 19 3 4 #"\"tw\""
+0 0 19 3 3 #"\"tw"
+0 0 19 3 1 #"\""
 0 0 24 3 2 #" ("
 0 0 14 3 3 #"car"
 0 0 24 3 1 #" "
@@ -831,27 +840,55 @@
 0 0 24 29 1 #"\n"
 0 0 24 3 3 #"  )"
 0 0 24 29 1 #"\n"
-0 0 17 3 61
-#"#|(list (getNameSN (socialnetwork \"facebook\" (date 25 10 2021"
-0 0 17 3 107
-(11
- #") \"encryptFn\" \"encryptFn\"))(getDateSN (socialnetwork \"facebook\""
- #" (date 25 10 2021) \"encryptFn\" \"encryptFn\"))"
-) 0 0 17 29 1 #"\n"
-0 0 17 3 148
-(12
- #"                                  (getFnEnc (socialnetwork \"facebook"
- #"\" (date 25 10 2021) \"encryptFn\" \"encryptFn\"))(getFnDesc (socialn"
- #"etwork \"facebook"
-) 0 0 17 3 45 #"\" (date 25 10 2021) \"encryptFn\" \"encryptFn\"))"
+0 0 17 3 35 #"#|(list (getNameSN (socialnetwork \""
+0 0 17 3 8 #"facebook"
+0 0 17 3 21 #"\" (date 25 10 2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 30 #"\"))(getDateSN (socialnetwork \""
+0 0 17 3 8 #"facebook"
+0 0 17 3 21 #"\" (date 25 10 2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\"))"
 0 0 17 29 1 #"\n"
-0 0 17 3 254
-(13
+0 0 17 3 60
+#"                                  (getFnEnc (socialnetwork \""
+0 0 17 3 8 #"facebook"
+0 0 17 3 21 #"\" (date 25 10 2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 30 #"\"))(getFnDesc (socialnetwork \""
+0 0 17 3 8 #"facebook"
+0 0 17 3 21 #"\" (date 25 10 2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\"))"
+0 0 17 29 1 #"\n"
+0 0 17 3 73
+(11
  #"                                  (appendLista (registra (socialnetwo"
- #"rk \"facebook\" (date 25 10 2021) \"encryptFn\" \"encryptFn\") (date "
- #"25 10 2021) \"benja\"  \"username123\")(getListaPost (socialnetwork "
- #"\"facebook\" (date 25 10 2021) \"encryptFn\" \"encryptFn\"))))|#"
-) 0 0 24 29 1 #"\n"
+ #"rk \""
+) 0 0 17 3 8 #"facebook"
+0 0 17 3 21 #"\" (date 25 10 2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 22 #"\") (date 25 10 2021) \""
+0 0 17 3 5 #"benja"
+0 0 17 3 4 #"\"  \""
+0 0 17 3 11 #"username123"
+0 0 17 3 32 #"\")(getListaPost (socialnetwork \""
+0 0 17 3 8 #"facebook"
+0 0 17 3 21 #"\" (date 25 10 2021) \""
+0 0 17 3 9 #"encryptFn"
+0 0 17 3 3 #"\" \""
+0 0 17 3 16 #"encryptFn\"))))|#"
+0 0 24 29 1 #"\n"
 0 0 17 3 14 #";Modificadores"
 0 0 24 29 1 #"\n"
 0 0 17 3 56
@@ -1200,7 +1237,7 @@
 0 0 24 3 3 #"  )"
 0 0 24 29 1 #"\n"
 0 0 17 3 75
-(14
+(12
  #";(remove-elem(getUltimoElemento(getListaPost FBPOST))(getListaPost FB"
  #"POST))"
 ) 0 0 24 29 1 #"\n"
@@ -1839,7 +1876,7 @@
 0 0 24 3 6 #"))))))"
 0 0 24 29 1 #"\n"
 0 0 17 3 120
-(15
+(13
  #";(comparaListas '(\"chilo\" \"123\" ((1 2 3)) '() (1 2 2021) \"offlin"
  #"e\") '(\"chilo\" \"123\" ((1 5 3)) '() (1 2 2021) \"offline\"))"
 ) 0 0 24 29 1 #"\n"
@@ -1979,7 +2016,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 3 10 #"          "
 0 0 17 3 69
-(16
+(14
  #";(cons (comparaListas user(funcion user variableaux))(cdr listaUser))"
 ) 0 0 24 29 1 #"\n"
 0 0 24 3 11 #"          ("
@@ -2017,7 +2054,7 @@
 0 0 24 3 5 #")))))"
 0 0 24 29 1 #"\n"
 0 0 17 3 95
-(17
+(15
  #";descripci\xC3\xB3n: Funci\xC3\xB3n que verifica si el nombre del use"
  #"r est\xC3\xA1 registrado en el socialnetwork"
 ) 0 0 24 29 1 #"\n"
@@ -2075,7 +2112,7 @@
 0 0 24 3 3 #"  )"
 0 0 24 29 1 #"\n"
 0 0 17 3 82
-(18
+(16
  #";descripci\xC3\xB3n: Funci\xC3\xB3n que elimina los usuario no regist"
  #"rados en el socialnetwork"
 ) 0 0 24 29 1 #"\n"
@@ -2158,7 +2195,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 133
-(19
+(17
  #";descripci\xC3\xB3n: Funci\xC3\xB3n auxiliar de registradoSN? que ver"
  #"ifica si el un string se repite en una lista de usuarios en el social"
  #"network"
@@ -2207,7 +2244,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 104
-(20
+(18
  #";descripci\xC3\xB3n: Funcion que en base a una lista de TDA user obti"
  #"ene una lista de los nombres los usuarios"
 ) 0 0 24 29 1 #"\n"
@@ -2252,7 +2289,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 73
-(21
+(19
  #";descripci\xC3\xB3n: Funcion que en base al nombre del user obtiene e"
  #"l tda User"
 ) 0 0 24 29 1 #"\n"
@@ -2306,7 +2343,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 3 8 #"      ))"
 0 0 17 3 97
-(22
+(20
  #";valida si esta registrado, getslistaUser y se la paso a listaNombre "
  #"y se la paso existe en lista"
 ) 0 0 24 29 1 #"\n"
@@ -2387,12 +2424,12 @@
 0 0 24 3 5 #")))))"
 0 0 24 29 1 #"\n"
 0 0 17 3 109
-(23
+(21
  #"#|(applicaGetTdaUser (register (register (socialnetwork \"facebook\" "
  #"(date 25 10 2021) \"encryptFn\" \"encryptFn\")"
 ) 0 0 17 29 1 #"\n"
 0 0 17 3 89
-(24
+(22
  #" (date 1 3 21) \"benja\" \"benja123\")(date 1 3 21) \"chilo\" \"benja"
  #"123\") '(\"benja\" \"chilo\"))|#"
 ) 0 0 24 29 1 #"\n"
@@ -2481,7 +2518,7 @@
 0 0 24 3 3 #")))"
 0 0 24 29 1 #"\n"
 0 0 17 3 82
-(25
+(23
  #";descripci\xC3\xB3n: Funcion que verifica si un string o un entero pe"
  #"rtenece a una lista"
 ) 0 0 24 29 1 #"\n"
@@ -2536,7 +2573,7 @@
 0 0 24 3 5 #")))))"
 0 0 24 29 1 #"\n"
 0 0 17 3 96
-(26
+(24
  #";descripci\xC3\xB3n: Funcion a\xC3\xB1ade una lista a una matriz (ent"
  #"iendase matriz como una lista de lista)"
 ) 0 0 24 29 1 #"\n"
@@ -2593,7 +2630,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 82
-(27
+(25
  #";Funcion que dado un socialnetwork retorna un tda usuario cuando est"
  #"\xC3\xA9 este online"
 ) 0 0 24 29 1 #"\n"
@@ -2671,8 +2708,7 @@
 0 0 24 3 1 #"("
 0 0 15 3 6 #"define"
 0 0 24 3 2 #" ("
-0 0 14 3 3 #"get"
-0 0 14 3 6 #"ElemID"
+0 0 14 3 9 #"getElemID"
 0 0 24 3 1 #" "
 0 0 14 3 5 #"lista"
 0 0 24 3 1 #" "
@@ -2732,7 +2768,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 84
-(28
+(26
  #";Funcion que luego se aplicar una funcion ya sea post o lo que sea se"
  #" vuelve Offline"
 ) 0 0 24 29 1 #"\n"
@@ -2849,7 +2885,7 @@
 0 0 17 3 56 #"(define(aplicaSetUserEstado sn user funcion variableaux)"
 0 0 17 29 1 #"\n"
 0 0 17 3 104
-(29
+(27
  #"  (if (socialnetwork? (list (getNameSN sn) (getDateSN sn)(getFnEnc sn"
  #") (getFnDesc sn)(setUser sn user fu"
 ) 0 0 17 3 20 #"ncion variableaux)))"
@@ -2857,7 +2893,7 @@
 0 0 17 3 51 #"                                (getListaPost sn)))"
 0 0 17 29 1 #"\n"
 0 0 17 3 110
-(30
+(28
  #"          (list (getNameSN sn) (getDateSN sn)(getFnEnc sn) (getFnDesc"
  #" sn)(setUser sn user funcion variableaux)"
 ) 0 0 17 29 1 #"\n"
@@ -2881,7 +2917,7 @@
 #"         (setUser sn (getUserOnlineSn sn) setEstado \"offline\")"
 0 0 17 29 1 #"\n"
 0 0 17 3 76
-(31
+(29
  #"         (cons (car (getListaUser sn))(aplicaSetUserEstadoListaAmigos"
  #")))))|#"
 ) 0 0 24 29 1 #"\n"
@@ -2896,7 +2932,7 @@
 0 0 24 3 5 #"     "
 0 0 24 29 1 #"\n"
 0 0 17 3 131
-(32
+(30
  #";(appendLista(user \"Benja\" \"123\" '() '())(list(user \"Benja\" \"1"
  #"23\" '() '())(user \"chilo\" \"123\" '() '())(user \"juli\" \"123\" '"
  #"() '())))"
@@ -2907,7 +2943,7 @@
 0 0 24 3 2 #"  "
 0 0 24 29 1 #"\n"
 0 0 17 3 103
-(33
+(31
  #";LISTA USER = (list(user \"Benja\" \"123\" '() '())(user \"chilo\" \""
  #"123\" '() '())(user \"juli\" \"123\" '() '()))"
 ) 0           0

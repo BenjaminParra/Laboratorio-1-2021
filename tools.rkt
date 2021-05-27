@@ -16,11 +16,11 @@
 
 (provide traducePost)
 (provide encryptFunction)
-(provide desencriptaLista)
+(provide desencriptaLista )
 (provide agregaElem)
 (provide traduceListaPost)
 (provide traduceListaUser)
-(provide decryptFunction)
+(provide desencriptaLista );decrypFunction
 ;(provide encriptaListaPostSN)
 (provide remove-elem)
 ;sn user funcion variableaux
@@ -80,7 +80,7 @@
    [(not(>= (string-length username)4))(error "Ingrese un Username de minimo 4 caracteres")]
    [(contieneSpace (string->list username))(error "Ingrese un Username sin espacios")]
    [(contieneSpace (string->list password))(error "Ingrese un password sin espacios")]
-   [(inicializaUser username password '()'() date "online")]))
+   [(inicializaUser username password '()'() date "offline")]))
 
 ;(char-numeric? #\0)
 
@@ -173,7 +173,7 @@
 (if (not(string? (caddr post)))
     (if(= 3 (length post))
        (string-append "El usuario " (getUser(car post)) " ha compartido el post " "\n"
-                                                 "<<" (list->string(desencriptaLista(caddr post)))">>" "en su perfil."
+                                                 "<<" (list->string(desencriptaLista (caddr post)))">>" "en su perfil."
                                                   "\n" "Fecha:" (traduceDate (cadr post))"\n" )
        (cond
     [(null? (cadddr post))(string-append "El usuario " (getUser(car post)) " ha publicado " (caddr post)
@@ -183,10 +183,10 @@
                  " en el perfil de " (getUser(car(cadddr post))) "." "\n" "Fecha:" (traduceDate (cadr post))"\n"#|(listToString(cadr post)"")|#)
                                   (if(= 4 (length post))
                                      (string-append "El usuario " (getUser(car post)) " ha compartido el post " "\n"
-                                                 "<<" (list->string(desencriptaLista(caddr post)))">>" "en el perfil de "
+                                                 "<<" (list->string(desencriptaLista (caddr post)))">>" "en el perfil de "
                                                  (cadddr post)"." "\n" "Fecha:" (traduceDate (cadr post))"\n" )
                                      (string-append "El usuario " (getUser(car post)) " ha compartido el post " "\n"
-                                                 "<<" (list->string(desencriptaLista(caddr post)))">>" "en su perfil." "\n" "Fecha:" (traduceDate (cadr post))"\n" ))
+                                                 "<<" (list->string(desencriptaLista (caddr post)))">>" "en su perfil." "\n" "Fecha:" (traduceDate (cadr post))"\n" ))
                                   )]))
     
     
@@ -232,7 +232,7 @@
 (define(desencriptaListaPost listaPost)
   (if (null? listaPost)
       listaPost
-      (append (desencriptaLista (string->list (traducePost (car listaPost))))(desencriptaListaPost (cdr listaPost)))))
+      (append (desencriptaLista  (string->list (traducePost (car listaPost))))(desencriptaListaPost (cdr listaPost)))))
 #|(define(encriptaListaPostSN sn)
   (if (socialnetwork? sn)
       (setListaPostSN sn (encriptaListaPost (getListaPost sn)))
@@ -240,48 +240,48 @@
 ;Funcion que desencripta las publicaciones de la red social
 ;dom: tda red social
 ;rec: tda red social
-(define(decryptFunction sn);desencripfuction
+(define(desencriptaListas sn);desencripfuction
   (if (socialnetwork? sn)
-      (setListaPostSN sn (desencriptaLista (getListaPost sn)))
+      (setListaPostSN sn (desencriptaLista  (getListaPost sn)))
       #f))
 
 
 ;Funcion que desencripta una lista de caracteres (string encriptado)
 ;dom: lista de caracteres
 ;rec: lista caracteres
-(define (desencriptaLista listaWord)
+(define (desencriptaLista  listaWord)
   (if (null? listaWord)
       ;(agregaElem "&" listaWord)
       listaWord
       (cond
-      [(char-ci=? (car listaWord) #\z)(cons #\a(desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\y)(cons #\b (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\x)(cons #\c(desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\w)(cons #\d(desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\v)(cons #\e (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\u)(cons #\f (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\t)(cons #\g (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\s)(cons #\h (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\r)(cons #\i (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\q)(cons #\j (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\p)(cons #\k (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\o)(cons #\l (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\n)(cons #\m (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\m)(cons #\n (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\%)(cons #\ñ (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\l)(cons #\o (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\k)(cons #\p (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\j)(cons #\q (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\i)(cons #\r (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\h)(cons #\s (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\g)(cons #\t (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\f)(cons #\u (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\e)(cons #\v (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\d)(cons #\w (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\c)(cons #\x (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\b)(cons #\y (desencriptaLista (cdr listaWord)))]
-      [(char-ci=? (car listaWord) #\a)(cons #\z (desencriptaLista (cdr listaWord)))]
-      [(cons (car listaWord)(desencriptaLista (cdr listaWord)))])))
+      [(char-ci=? (car listaWord) #\z)(cons #\a(desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\y)(cons #\b (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\x)(cons #\c(desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\w)(cons #\d(desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\v)(cons #\e (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\u)(cons #\f (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\t)(cons #\g (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\s)(cons #\h (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\r)(cons #\i (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\q)(cons #\j (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\p)(cons #\k (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\o)(cons #\l (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\n)(cons #\m (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\m)(cons #\n (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\%)(cons #\ñ (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\l)(cons #\o (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\k)(cons #\p (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\j)(cons #\q (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\i)(cons #\r (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\h)(cons #\s (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\g)(cons #\t (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\f)(cons #\u (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\e)(cons #\v (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\d)(cons #\w (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\c)(cons #\x (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\b)(cons #\y (desencriptaLista  (cdr listaWord)))]
+      [(char-ci=? (car listaWord) #\a)(cons #\z (desencriptaLista  (cdr listaWord)))]
+      [(cons (car listaWord)(desencriptaLista  (cdr listaWord)))])))
 
 ;(setListaPost sn (encriptaLista(string->list(traducePost (getUltimoElemento (getListaPost sn))))))
 ;Funcion que se encarga de encriptar una lista de caracteres (string transformado a una lista de caracteres)
@@ -322,7 +322,14 @@
       [(cons (car listaWord)(encryptFunction (cdr listaWord)))])))
 
 
+(define(desencriptaPost publi)
+  (list (car publi) (cadr publi) (list->string(desencriptaLista(string->list(caddr publi)))) (cadddr publi)))
 
+(define(desencriptaPostShare publi)
+  ;(list user date post (car amigo))
+  (if (=(length publi)3)
+      (list (car publi) (cadr publi) (desencriptaPost (caddr publi)))
+      (list (car publi) (cadr publi) (desencriptaPost (caddr publi)) (cadddr publi)) ))
 
 #|(encriptaLista (string->list (traducePost(car (getListaPostUser (car '(("benja"
    "123"
@@ -372,3 +379,5 @@
    "offline")
   ("chilo" "123" () () (1 2 2021) "offline")
   ("juli" "123" () () (1 2 2021) "offline")))))))|#
+;(define(encriptado?))
+;(define(funcionEncriptadora))
